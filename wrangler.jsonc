@@ -8,6 +8,13 @@
     "enabled": true,
     "head_sampling_rate": 1
   },
+  // Custom domain mapping
+  "routes": [
+    {
+      "pattern": "release.cogix.app",
+      "custom_domain": true
+    }
+  ],
   // R2 bucket binding for binary storage
   "r2_buckets": [
     {
