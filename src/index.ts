@@ -484,7 +484,7 @@ app.get('/', async (c) => {
     </div>
 
     <footer>
-      <p>© 2025 Cogix Project. All rights reserved.</p>
+      <p>© 2026 Cogix Project. All rights reserved.</p>
       <p>Powered by Cloudflare Workers & R2</p>
     </footer>
   </div>
