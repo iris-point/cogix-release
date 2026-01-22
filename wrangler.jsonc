@@ -1,0 +1,24 @@
+// wrangler.jsonc
+{
+  "name": "cogix-release",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  // R2 bucket binding for binary storage
+  "r2_buckets": [
+    {
+      "binding": "RELEASES",
+      "bucket_name": "cogix-releases",
+      "preview_bucket_name": "cogix-releases-preview"
+    }
+  ],
+  // Environment variables
+  "vars": {
+    "ENVIRONMENT": "production",
+    "MAX_FILE_SIZE_GB": "2"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "cogix-release",
+  "version": "1.0.0",
+  "description": "Cogix binary release management and download service",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "wrangler dev --local"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "r2",
+    "binary-releases"
+  ],
+  "author": "Cogix Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250110.0",
+    "wrangler": "^3.95.0"
+  },
+  "dependencies": {
+    "hono": "^4.7.11"
+  }
+}
