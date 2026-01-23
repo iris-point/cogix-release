@@ -113,6 +113,9 @@ app.get('/', async (c) => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cogix Downloads - Binary Releases</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -121,83 +124,166 @@ app.get('/', async (c) => {
     }
 
     :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --secondary: #8b5cf6;
-      --background: #0f172a;
-      --surface: #1e293b;
-      --surface-light: #334155;
-      --text: #f1f5f9;
-      --text-muted: #94a3b8;
-      --border: #334155;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --radius: 12px;
+      /* Cogix Primary - Trust Blue */
+      --primary-50: #EFF6FF;
+      --primary-100: #DBEAFE;
+      --primary-200: #BFDBFE;
+      --primary-300: #93C5FD;
+      --primary-400: #60A5FA;
+      --primary-500: #3B82F6;
+      --primary-600: #2563EB;
+      --primary-700: #1D4ED8;
+      --primary-800: #1E40AF;
+      --primary-900: #1E3A8A;
+
+      /* Cogix Secondary - Research Purple */
+      --secondary-500: #A855F7;
+      --secondary-600: #9333EA;
+      --secondary-700: #7C3AED;
+      --secondary-800: #6D28D9;
+
+      /* Cogix Accent - Action Orange */
+      --accent-400: #FB923C;
+      --accent-500: #F97316;
+      --accent-600: #EA580C;
+
+      /* Neutrals - Slate */
+      --neutral-50: #F8FAFC;
+      --neutral-100: #F1F5F9;
+      --neutral-200: #E2E8F0;
+      --neutral-300: #CBD5E1;
+      --neutral-400: #94A3B8;
+      --neutral-500: #64748B;
+      --neutral-600: #475569;
+      --neutral-700: #334155;
+      --neutral-800: #1E293B;
+      --neutral-900: #0F172A;
+      --neutral-950: #020617;
+
+      /* Semantic */
+      --success: #22C55E;
+      --warning: #F59E0B;
+      --destructive: #EF4444;
+
+      /* Theme tokens */
+      --background: #FFFFFF;
+      --foreground: var(--neutral-900);
+      --card: #FFFFFF;
+      --card-foreground: var(--neutral-900);
+      --border: var(--neutral-200);
+      --input: var(--neutral-200);
+      --ring: var(--primary-600);
+      --muted: var(--neutral-100);
+      --muted-foreground: var(--neutral-500);
+
+      --radius: 0.375rem;
+      --radius-lg: 0.5rem;
+      --radius-xl: 0.75rem;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    .dark {
+      --background: var(--neutral-950);
+      --foreground: var(--neutral-50);
+      --card: var(--neutral-900);
+      --card-foreground: var(--neutral-50);
+      --border: var(--neutral-800);
+      --input: var(--neutral-800);
+      --ring: var(--primary-500);
+      --muted: var(--neutral-800);
+      --muted-foreground: var(--neutral-400);
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--background);
-      color: var(--text);
-      line-height: 1.6;
+      color: var(--foreground);
+      line-height: 1.5;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Mesh gradient background */
+    .mesh-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 0%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(249, 115, 22, 0.04) 0%, transparent 50%),
+        var(--background);
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 2rem;
+      position: relative;
     }
 
     header {
       text-align: center;
       margin-bottom: 3rem;
-      padding: 2rem 0;
-      border-bottom: 2px solid var(--border);
+      padding: 3rem 0 2rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-700) 100%);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
     }
 
     h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--foreground);
+      letter-spacing: -0.025em;
     }
 
     .subtitle {
-      color: var(--text-muted);
-      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      font-size: 1rem;
+      margin-top: 0.5rem;
     }
 
-    .loading {
-      text-align: center;
-      padding: 3rem;
-      color: var(--text-muted);
-    }
-
-    .spinner {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      border: 4px solid var(--surface-light);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .error {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      color: #fca5a5;
-      padding: 1rem;
+    .theme-toggle {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      margin: 2rem 0;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1.25rem;
+    }
+
+    .theme-toggle:hover {
+      background: var(--muted);
+      border-color: var(--primary-500);
     }
 
     .filters {
@@ -205,6 +291,11 @@ app.get('/', async (c) => {
       gap: 1rem;
       margin-bottom: 2rem;
       flex-wrap: wrap;
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
 
     .filter-group {
@@ -215,8 +306,8 @@ app.get('/', async (c) => {
     .filter-group label {
       display: block;
       margin-bottom: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -224,96 +315,164 @@ app.get('/', async (c) => {
 
     select, input {
       width: 100%;
-      padding: 0.75rem 1rem;
-      background: var(--surface);
+      padding: 0.625rem 0.875rem;
+      background: var(--background);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      color: var(--text);
-      font-size: 1rem;
-      transition: all 0.2s;
+      color: var(--foreground);
+      font-size: 0.875rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    select:hover, input:hover {
+      border-color: var(--neutral-300);
     }
 
     select:focus, input:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      border-color: var(--primary-500);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary-50) 0%, var(--neutral-50) 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--primary-100);
+    }
+
+    .dark .stats-bar {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+      border-color: var(--primary-900);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-600);
+    }
+
+    .dark .stat-value {
+      color: var(--primary-400);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 4rem;
+      color: var(--muted-foreground);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary-600);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: var(--destructive);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      margin: 2rem 0;
     }
 
     .product-section {
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
     .product-header {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--border);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
     }
 
     .product-icon {
-      font-size: 2rem;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
     }
 
     .product-name {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--text);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--foreground);
     }
 
     .product-count {
       margin-left: auto;
-      background: var(--surface-light);
-      padding: 0.25rem 0.75rem;
+      background: var(--muted);
+      padding: 0.25rem 0.625rem;
       border-radius: 9999px;
-      font-size: 0.875rem;
-      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
     }
 
     .releases-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
     }
 
     .release-card {
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: all 0.3s ease;
+      border-radius: var(--radius-xl);
+      padding: 1.25rem;
+      transition: all 0.2s ease;
       position: relative;
-      overflow: hidden;
-    }
-
-    .release-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
     }
 
     .release-card:hover {
-      border-color: var(--primary);
+      border-color: var(--primary-300);
+      box-shadow: var(--shadow-lg), 0 0 0 1px var(--primary-100);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
     }
 
-    .release-card:hover::before {
-      transform: scaleX(1);
+    .dark .release-card:hover {
+      border-color: var(--primary-700);
+      box-shadow: var(--shadow-lg), 0 0 20px rgba(37, 99, 235, 0.1);
     }
 
     .release-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .release-info {
@@ -321,12 +480,14 @@ app.get('/', async (c) => {
     }
 
     .version-badge {
-      display: inline-block;
-      background: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
       color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--radius);
+      font-size: 0.75rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
@@ -334,50 +495,63 @@ app.get('/', async (c) => {
     .platform-info {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      margin-bottom: 0.5rem;
+      gap: 0.375rem;
+      color: var(--muted-foreground);
+      font-size: 0.8125rem;
     }
 
     .platform-icon {
-      font-size: 1.25rem;
+      font-size: 1rem;
+    }
+
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: var(--muted);
+      padding: 0.125rem 0.5rem;
+      border-radius: var(--radius);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      text-transform: uppercase;
     }
 
     .filename {
-      font-family: 'Courier New', monospace;
-      font-size: 0.875rem;
-      color: var(--text);
-      margin-bottom: 0.75rem;
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.8125rem;
+      color: var(--foreground);
+      margin: 0.75rem 0;
+      padding: 0.625rem 0.75rem;
+      background: var(--muted);
+      border-radius: var(--radius);
       word-break: break-all;
+      border: 1px solid var(--border);
     }
 
     .release-meta {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
+      gap: 0.5rem;
       margin-bottom: 1rem;
-      padding: 1rem;
-      background: var(--background);
-      border-radius: 8px;
     }
 
     .meta-item {
       display: flex;
       flex-direction: column;
+      gap: 0.125rem;
     }
 
     .meta-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      font-size: 0.6875rem;
+      color: var(--muted-foreground);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 0.25rem;
+      font-weight: 500;
     }
 
     .meta-value {
-      font-size: 0.875rem;
-      color: var(--text);
+      font-size: 0.8125rem;
+      color: var(--foreground);
       font-weight: 600;
     }
 
@@ -387,20 +561,22 @@ app.get('/', async (c) => {
       justify-content: center;
       gap: 0.5rem;
       width: 100%;
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 0.625rem 1rem;
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
       color: white;
       text-decoration: none;
       border-radius: var(--radius);
+      font-size: 0.875rem;
       font-weight: 600;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       border: none;
       cursor: pointer;
     }
 
     .download-btn:hover {
+      background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
     }
 
     .download-btn:active {
@@ -410,12 +586,20 @@ app.get('/', async (c) => {
     .empty-state {
       text-align: center;
       padding: 4rem 2rem;
-      color: var(--text-muted);
+      color: var(--muted-foreground);
     }
 
     .empty-icon {
-      font-size: 4rem;
+      font-size: 3rem;
       margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .empty-state h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--foreground);
+      margin-bottom: 0.5rem;
     }
 
     footer {
@@ -423,8 +607,17 @@ app.get('/', async (c) => {
       margin-top: 4rem;
       padding: 2rem 0;
       border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      font-size: 0.8125rem;
+    }
+
+    footer a {
+      color: var(--primary-600);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
@@ -433,7 +626,7 @@ app.get('/', async (c) => {
       }
 
       h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
       }
 
       .releases-grid {
@@ -442,20 +635,39 @@ app.get('/', async (c) => {
 
       .filters {
         flex-direction: column;
+        padding: 1rem;
       }
 
       .filter-group {
         min-width: 100%;
       }
+
+      .stats-bar {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="mesh-bg"></div>
   <div class="container">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+
     <header>
-      <h1>📦 Cogix Downloads</h1>
-      <p class="subtitle">Download the latest binary releases for all Cogix products</p>
+      <div class="logo">
+        <div class="logo-icon">🧠</div>
+        <h1>Cogix Downloads</h1>
+      </div>
+      <p class="subtitle">Download the latest binary releases for Cogix products</p>
     </header>
+
+    <div id="stats-container"></div>
 
     <div class="filters">
       <div class="filter-group">
@@ -479,19 +691,37 @@ app.get('/', async (c) => {
     <div id="releases-container">
       <div class="loading">
         <div class="spinner"></div>
-        <p>Loading releases...</p>
+        <p style="margin-top: 1rem;">Loading releases...</p>
       </div>
     </div>
 
     <footer>
-      <p>© 2026 Cogix Project. All rights reserved.</p>
-      <p>Powered by Cloudflare Workers & R2</p>
+      <p>© 2026 <a href="https://cogix.app">Cogix</a>. All rights reserved.</p>
+      <p style="margin-top: 0.5rem; opacity: 0.7;">Powered by Cloudflare Workers & R2</p>
     </footer>
   </div>
 
   <script>
     let allReleases = [];
     let filteredReleases = [];
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
+    }
+
+    // Initialize theme from localStorage
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.body.classList.add('dark');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+      }
+    }
 
     async function loadReleases() {
       try {
@@ -503,6 +733,7 @@ app.get('/', async (c) => {
         allReleases = data.releases || [];
         filteredReleases = [...allReleases];
 
+        renderStats();
         populateFilters();
         renderReleases();
       } catch (error) {
@@ -513,6 +744,28 @@ app.get('/', async (c) => {
           </div>
         \`;
       }
+    }
+
+    function renderStats() {
+      const totalSize = allReleases.reduce((sum, r) => sum + r.size, 0);
+      const products = new Set(allReleases.map(r => r.metadata.product)).size;
+
+      document.getElementById('stats-container').innerHTML = \`
+        <div class="stats-bar">
+          <div class="stat-item">
+            <span class="stat-value">\${allReleases.length}</span>
+            <span class="stat-label">Releases</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">\${products}</span>
+            <span class="stat-label">Products</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">\${formatFileSize(totalSize)}</span>
+            <span class="stat-label">Total Size</span>
+          </div>
+        </div>
+      \`;
     }
 
     function populateFilters() {
@@ -561,6 +814,16 @@ app.get('/', async (c) => {
       renderReleases();
     }
 
+    function getProductIcon(product) {
+      const p = product.toLowerCase();
+      if (p.includes('app')) return '🧠';
+      if (p.includes('desktop')) return '🖥️';
+      if (p.includes('eye') || p.includes('tracking')) return '👁️';
+      if (p.includes('sdk')) return '🔧';
+      if (p.includes('model')) return '🤖';
+      return '📦';
+    }
+
     function renderReleases() {
       const container = document.getElementById('releases-container');
 
@@ -595,10 +858,11 @@ app.get('/', async (c) => {
       let html = '';
       Object.keys(grouped).sort().forEach(product => {
         const releases = grouped[product];
+        const productIcon = getProductIcon(product);
         html += \`
           <div class="product-section">
             <div class="product-header">
-              <span class="product-icon">🚀</span>
+              <div class="product-icon">\${productIcon}</div>
               <h2 class="product-name">\${product}</h2>
               <span class="product-count">\${releases.length} release\${releases.length !== 1 ? 's' : ''}</span>
             </div>
@@ -629,7 +893,8 @@ app.get('/', async (c) => {
               <span class="version-badge">v\${metadata.version}</span>
               <div class="platform-info">
                 <span class="platform-icon">\${platformIcon}</span>
-                <span>\${metadata.platform} · \${metadata.arch}</span>
+                <span>\${metadata.platform}</span>
+                <span class="platform-badge">\${metadata.arch}</span>
               </div>
             </div>
           </div>
@@ -645,7 +910,11 @@ app.get('/', async (c) => {
             </div>
           </div>
           <a href="/download/\${encodeURIComponent(release.key)}" class="download-btn">
-            <span>⬇️</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
             <span>Download</span>
           </a>
         </div>
@@ -674,7 +943,8 @@ app.get('/', async (c) => {
     document.getElementById('platform-filter').addEventListener('change', applyFilters);
     document.getElementById('search-filter').addEventListener('input', applyFilters);
 
-    // Load releases on page load
+    // Initialize
+    initTheme();
     loadReleases();
   </script>
 </body>
